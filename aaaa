@@ -1,0 +1,73 @@
+
+---JUST TARAFINDAN YAPILMIŞTIR
+
+-----------------------Özel İş Parası 500k üzeri olanlar vs.-------------------------
+TEAM_ZENGIN = DarkRP.createJob("Zengin", {
+	color = Color(0, 255, 255, 255),
+	model = {
+		"models/player/breen.mdl",
+		"models/player/Group03/Female_02.mdl"
+		},
+	description = [[raid yapamaz.Mug yapar.]],
+	weapons = {"weapon_p2282" , "weapon_shotgun"},
+	command = "zengin",
+	max = 3,
+	salary = 250,
+	admin = 0,
+	vote = false,
+	hasLicense = true,
+	customCheck = function(ply) return ply:getDarkRPVar("money") > 500000 end,
+	CustomCheckFailMsg = "Yeterli paran yok!", 
+	modelScale = 1.5,
+	maxpocket = 20,
+    PlayerSpawn =  function(ply) ply:SetArmor(100) end,
+	RequiresVote = function(ply, job) for k,v in pairs(player.GetAll()) do if IsValid(v) and v:IsAdmin() then return false end end return true end, -- Oyunda admin yokken vote yapmak zorunda olmak
+        label = "Super job", -- F4 menüsündeki Button üzerinde yazan yazı
+})
+
+------------------------------Görevli Yetkili Sadece Adminler--------------------------------
+TEAM_AOD = DarkRP.createJob('Görevli Yetkili', {
+color = Color(0, 255, 255, 255),
+model = "models/gingerbread/gingerbread.mdl",
+description = [[Ne yapıcağını biliyorsun ]],
+weapons = {""},
+command = 'adminonduty',
+max = 0,
+salary = 300,
+admin = 1,
+vote = false,
+hasLicense = false,
+})
+----------------------------Süper Görevli Yetkili Sadece Superadminler---------------------------
+TEAM_SOD = DarkRP.createJob('Süper Görevli Yetkili', {
+color = Color(0, 255, 255, 255),
+model = "models/vinrax/player/doll_player.mdl",
+description = [[Ne yapıcağını biliyorsun ]],
+weapons = {""},
+command = 'superadminonduty',
+max = 0,
+salary = 1000,
+admin = 2,
+vote = false,
+hasLicense = false,
+})
+
+--------------------------------Donator İşi----------------------------------------------------
+TEAM_PROTEST = DarkRP.createJob('Protestocu', {
+color = Color(0, 0, 0, 255),
+model = "models/player/soldier_stripped.mdl",
+description = [[Protestocu olarak gündem hakkında bir konu bulup protesto yapıyorsun.Tabiki unutma sen bir provokator degilsin.Gas cani abartma.Yoksa vipliğin elinden alınabilir.]],
+weapons = {"weapon_gascan_limited"},
+command = 'protestocu',
+max = 2,
+salary = 45,
+admin = 0,
+vote = true,
+hasLicense = false,
+customCheck = function(ply) return CLIENT or
+    table.HasValue({'superadmin', 'donator', 'moderator+', 'admin+' , 'helper+'}, ply:GetNWString('usergroup'))
+    end,
+    CustomCheckFailMsg = 'Bu iş için Donator olman gerek',
+})
+
+---JUST TARAFINDAN YAPILMIŞTIR.
